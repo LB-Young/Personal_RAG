@@ -2,16 +2,16 @@
 基于个人的私有数据，定制RAG问答系统
 
 ## 使用
-# 环境准备
+### 环境准备
 pip install -r requirement.txt
 安装其它必要的安装包；
 
-# 启动服务
+### 启动服务
 ```
 python rag_api.py
 ```
 
-# 服务调用
+### 服务调用
 python ./test/rag_test.py
 ```
 import requests
