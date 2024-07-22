@@ -1,1 +1,1 @@
-python ../personal_rag/servers/rag_api.py
+python ../personal_rag/rag_api.py
