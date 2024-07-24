@@ -10,6 +10,9 @@ app = FastAPI()
 
 class ChatParams(BaseModel):
     file_path: constr()
+    db_name:constr() = "tmp"
+    need_embedding: bool = False
+    db_type: constr() = "local"
     query: constr()
     temperature: confloat()
 
@@ -19,7 +22,10 @@ def chat(request:Request, chat_params:ChatParams):
     query_entity.requests_param_extract(chat_params)
     if len(chat_params.file_path) != 0:
         file_path = chat_params.file_path
-        res = DocumentExtractor(file_path).do_extract()
+        need_embedding = chat_params.need_embedding
+        db_name = chat_params.db_name
+        db_type = chat_params.db_type
+        res = DocumentExtractor(file_path=file_path, need_embedding=need_embedding, db_name=db_name, db_type=db_type).do_extract()
         if res:
             print("documents extract finished!")
     rag_handler = RAG_Handler(query_entity)

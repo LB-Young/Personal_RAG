@@ -1,4 +1,6 @@
+chromadb
 docx==1.1.2
+FlagEmbedding
 openai==1.36.1
 pdfdplumber==0.11.2
 uvicorn

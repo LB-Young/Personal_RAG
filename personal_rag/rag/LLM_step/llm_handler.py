@@ -3,7 +3,7 @@ from personal_rag.LLM_model.llm_client import LLMClient
 
 
 class LLMBlock:
-    def __init__(self):
+    def __init__(self, query_entity):
         self.llm_client = LLMClient()
 
     def ado_llm(self, query_entity):

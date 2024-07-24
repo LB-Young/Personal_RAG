@@ -7,10 +7,10 @@ from personal_rag.rag.LLM_step.llm_handler import LLMBlock
 class RAG_Handler:
     def __init__(self, query_entity):
         self.query_entity = query_entity
-        self.retrivalblock = RetrivalBlock()
-        self.rankblock = RankBlock()
-        self.llmblock = LLMBlock()
-        self.answer_entity = ResponseEntity()
+        self.retrivalblock = RetrivalBlock(query_entity)
+        self.rankblock = RankBlock(query_entity)
+        self.llmblock = LLMBlock(query_entity)
+        self.answer_entity = ResponseEntity(query_entity)
 
     def ado(self):
         self.query_entity = self.retrivalblock.ado_retrival(self.query_entity)
