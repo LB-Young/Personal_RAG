@@ -1,9 +1,10 @@
 from openai import OpenAI
-
+from personal_rag.config import get_api_key
 
 class LLMClient:
     def __init__(self):
-        self.deepseek_client = OpenAI(api_key="sk-f0e25fda9f6845b0a06ad156c7f43392", base_url="https://api.deepseek.com")
+        api_key = get_api_key("deepseek")
+        self.deepseek_client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
 
     def ado_requests(self, prompt):
         response = self.deepseek_client.chat.completions.create(

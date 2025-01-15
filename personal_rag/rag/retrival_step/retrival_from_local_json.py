@@ -17,15 +17,15 @@ class RetrivalFromLocalJson:
 
     def ado(self, query_entity):
         query = query_entity.query
+        embedding_response = self.embedding_client.do_embedding([query])
+        query_embedding = embedding_response[0]
         for index, slice in enumerate(self.all_slices):
             jac_score, cos_score = 0, 0
             if "jac" in RAG_Config['slice_rank_method']:
                 jac_score = self.cal_jac_similarity(query, slice['name_slice_content'])
             if "cos" in RAG_Config['slice_rank_method']:
-                embedding_response = self.embedding_client.do_embedding([query])
-                query_embedding = embedding_response['dense_vecs'][0].tolist()
                 cos_score = self.cal_cos_similarity(query_embedding, slice['embedding'])
-        slice['retrival_similarity'] = 0.3*jac_score + cos_score
+            slice['retrival_similarity'] = 0.3*jac_score + cos_score
         self.all_slices.sort(key=lambda x:x['retrival_similarity'], reverse=True)
         top_slices = min(10, len(self.all_slices))
         tmp_retrival_slices = self.all_slices[:top_slices]

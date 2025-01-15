@@ -1,13 +1,15 @@
 from personal_rag.config import RAG_Config
 from personal_rag.other_models.rerank import BGERerank
-from personal_rag.other_models.remote_rerank import RemoteRerank
+from personal_rag.other_models.remote_rerank import CohereRerank
 
 class RerankClient:
     def __init__(self):
-        if RAG_Config["rank_method"] == "bge_rerank":
+        if RAG_Config['rank_method'] == "local_rerank":
             self.rerank_client = BGERerank()
-        elif RAG_Config["rank_method"] == "remote_rerank":
-            self.rerank_client = RemoteRerank()
+        elif RAG_Config['rank_method'] == "cohere_rerank":
+            self.rerank_client = CohereRerank()
+        else:
+            raise ValueError("rank_method must be local_rerank or remote_rerank")
 
     def do_rerank(self, query_entity):
         retrival_slices = query_entity.retrival_slices

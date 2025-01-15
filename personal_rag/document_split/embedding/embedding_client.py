@@ -9,5 +9,5 @@ class EmbeddingClient:
             all_content = [slice['slice_content'] for slice in slices[key]]
             all_embeddings = self.embedding.do_embedding(all_content)
             for index, item in enumerate(slices[key]):
-                item['embedding'] = all_embeddings['dense_vecs'][index].tolist()
+                item['embedding'] = all_embeddings[index]
         return slices

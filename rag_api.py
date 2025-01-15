@@ -37,6 +37,26 @@ def chat(request:Request, chat_params:ChatParams):
     return JSONResponse(response_body)
 
 
+@app.post("/retrival")
+def retrival(request:Request, chat_params:ChatParams):
+    query_entity = QueryEntity()
+    query_entity.requests_param_extract(chat_params)
+    if len(chat_params.file_path) != 0:
+        file_path = chat_params.file_path
+        need_embedding = chat_params.need_embedding
+        db_name = chat_params.db_name
+        db_type = chat_params.db_type
+        res = DocumentExtractor(file_path=file_path, need_embedding=need_embedding, db_name=db_name, db_type=db_type).do_extract()
+        if res:
+            print("documents extract finished!")
+    rag_handler = RAG_Handler(query_entity)
+    response_entity = rag_handler.ado(retrival=True)
+    
+    response_body = {
+        "answer":response_entity.answer
+    }
+    return JSONResponse(response_body)
+
 if __name__ == "__main__":
     server_config = Config(
         app=app,

@@ -1,14 +1,14 @@
 import requests
 import json
 
-url = "http://127.0.0.1:8013/chat"
+url = "http://127.0.0.1:8013/retrival"
 
 request_body = {
-    "file_path": r"C:\Users\86187\Desktop\test",
+    "file_path": "",
     "need_embedding":True,
     "db_name":"tmp",
     "db_type":"local",
-    "query": "介绍",
+    "query": "结构化抽取是什么意思",
     "temperature": 1.0
 }
 

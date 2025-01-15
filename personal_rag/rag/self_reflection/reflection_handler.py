@@ -1,4 +1,4 @@
-from personal_rag.config import LLMConfig
+from personal_rag.config import RAG_Config
 
 
 class ReflectionBlock:
