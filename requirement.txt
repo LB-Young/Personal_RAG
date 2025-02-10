@@ -1,6 +1,8 @@
 chromadb
-docx==1.1.2
+cohere
+python-docx
+fastapi
 FlagEmbedding
-openai==1.36.1
-pdfdplumber==0.11.2
+openai
+pdfplumber
 uvicorn

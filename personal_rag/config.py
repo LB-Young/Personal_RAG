@@ -1,6 +1,7 @@
 DocumentSplit_Config = {
-    "embedding_mode": "together",
-    "embedding_remote_url": "http://10.252.242.3:8901",
+    "embedding_mode": "aliyun",
+    "embedding_remote_url": "https://dashscope.aliyuncs.com/api/v1/services/embeddings/multimodal-embedding/multimodal-embedding",
+    "embedding_model_name": "multimodal-embedding-v1",
     "embedding_model_path": "F:\Cmodels\model_weights\m3e_base",
     "device":"cpu"
 }
@@ -18,7 +19,7 @@ RAG_Config = {
 import json
 
 def get_api_key(platform):
-    with open(file=r"C:\Users\86187\Desktop\api_key.json",mode="r", encoding="utf-8") as f:
+    with open(file="/Users/liubaoyang/Documents/windows/api_key.json",mode="r", encoding="utf-8") as f:
         config = json.load(f)
         return config[platform]
     

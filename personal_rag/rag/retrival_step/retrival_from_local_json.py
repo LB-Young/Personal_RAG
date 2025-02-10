@@ -7,7 +7,7 @@ from personal_rag.other_models.embedding import BGEEmbedding
 class RetrivalFromLocalJson:
     def __init__(self, query_entity):
         self.embedding_client = BGEEmbedding()
-        with open(f"F:\Cmodels\Personal_RAG\personal_rag\slice_database\local_database\{query_entity.db_name}.json", "r", encoding="utf-8") as f:
+        with open(f"/Users/liubaoyang/Documents/YoungL/Personal_RAG/personal_rag/slice_database/local_database/{query_entity.db_name}.json", "r", encoding="utf-8") as f:
             self.database = json.load(f)
         self.all_slices = []
         for key, value in self.database.items():
